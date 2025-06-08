@@ -1,0 +1,6 @@
+# Production requirements.
+aiogram
+openai
+redis
+elasticsearch
+hyperscan                 # for fast reply filters. 

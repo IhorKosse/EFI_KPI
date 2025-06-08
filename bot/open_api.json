@@ -1,0 +1,171 @@
+{
+  "search": {
+    "name": "search",
+    "description": "Fetches task IDs using advanced queries. For exact dates, use 'after' and 'before' instead of 'for_period'.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Optional. Searches tasks by name."
+        },
+        "inbox": {
+          "type": "boolean",
+          "description": "If true, returns tasks from the inbox (tasks without a deadline set)."
+        },
+        "priority": {
+          "type": "string",
+          "description": "Filters tasks by priority. Acceptable values are null, '!', '!!', '!!!'."
+        },
+        "any_all_priority_tasks": {
+          "type": "boolean",
+          "description": "If true, returns all tasks with any set priority."
+        },
+        "status": {
+          "type": "string",
+          "description": "Filters tasks by status. Acceptable values are null or 'closed'."
+        },
+        "for_period": {
+          "type": "string",
+          "description": "Returns tasks for a specified period. Do not use if exact dates are requested.",
+          "enum": [
+            "today",
+            "tomorrow",
+            "next_3_days",
+            "current_work_week",
+            "current_weekend",
+            "current_week",
+            "next_week",
+            "next_work_week",
+            "next_week_weekend",
+            "next_monday",
+            "next_tuesday",
+            "next_wednesday",
+            "next_thursday",
+            "next_friday",
+            "next_saturday",
+            "next_sunday"
+          ]
+        },
+        "before": {
+          "type": "string",
+          "description": "Filters tasks before a specified RFC3339 date/time; combinable with 'after'."
+        },
+        "after": {
+          "type": "string",
+          "description": "Filters tasks after a specified RFC3339 date/time; combinable with 'before'."
+        }
+      },
+      "required": []
+    }
+  },
+  "add_task": {
+    "name": "add_task",
+    "description": "Adds a new task.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Task name. Must be at least 4 characters long and cannot contain special characters or new lines.",
+          "minLength": 4
+        },
+        "start": {
+          "type": "string",
+          "description": "Start time in ISO 8601 format, e.g., '2023-04-15' or '2023-04-15T20:00:00'",
+          "format": "date-time"
+        },
+        "deadline": {
+          "type": "string",
+          "description": "Deadline date in ISO 8601 format, e.g., '2023-04-15' or '2023-04-15T20:00:00'",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "duration in minutes.",
+          "format": "int"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority in !"
+        },
+        "status": {
+          "type": "string",
+          "description": "status can be null or closed or deleted"
+        },
+        "reminders": {
+          "type": "array",
+          "description": "A list of reminder objects, each specifying a time to remind about the task",
+          "items": {
+            "type": "object",
+            "properties": {
+              "on": {
+                "type": "string",
+                "description": "Time for the reminder in ISO 8601 format, e.g., 'YYYY-MM-DDTHH:MM:SSZ'"
+              }
+            }
+          }
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  "update_task": {
+    "name": "update_task",
+    "description": "updates the task by ID, name or a deadline is required per task",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of the target task"
+        },
+        "name": {
+          "type": "string",
+          "description": "new name"
+        },
+        "start": {
+          "type": "string",
+          "description": "Start time in ISO 8601 format, e.g., '2023-04-15' or '2023-04-15T20:00:00'",
+          "format": "date-time"
+        },
+        "deadline": {
+          "type": "string",
+          "description": "Deadline date in ISO 8601 format, e.g., '2023-04-15' or '2023-04-15T20:00:00'",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "new duration in minutes.",
+          "format": "int"
+        },
+        "priority": {
+          "type": "string",
+          "description": "priority in !"
+        },
+        "status": {
+          "type": "string",
+          "description": "new status as closed or deleted"
+        },
+        "i": {
+          "type": "string",
+          "description": "set true ONLY if user asks to return task back to inbox"
+        },
+        "reminders": {
+          "type": "array",
+          "description": "A list of reminder objects, each specifying a time to remind about the task",
+          "items": {
+            "type": "object",
+            "properties": {
+              "on": {
+                "type": "string",
+                "description": "The specific time for the reminder in ISO 8601 format, e.g., 'YYYY-MM-DDTHH:MM:SS'"
+              }
+            }
+          }
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# MacOS development requirements.
+pytest
+
+
+# Production requirements.
+aiogram
+openai
+redis
+elasticsearch
+# hyperscan                 # for fast reply filters / no library available for macos 

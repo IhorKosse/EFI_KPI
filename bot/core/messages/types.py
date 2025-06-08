@@ -1,0 +1,7 @@
+MESSAGE_USER_REQUEST = "user_request"
+MESSAGE_AI_RESPONSE = "ai_response"
+MESSAGE_TYPE_TASKS_LISTING = "tasks_listing"
+MESSAGE_TYPE_TASKS_LISTING_SEQUENTIAL = "tasks_listing_sequential"
+MESSAGE_REGULAR = "regular"
+MESSAGE_TYPE_NOTIFICATION = "notification"
+MESSAGE_TYPE_TASKS_FROM_AI = "tasks_from_ai"

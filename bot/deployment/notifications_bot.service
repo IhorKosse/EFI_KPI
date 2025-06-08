@@ -1,0 +1,12 @@
+[Unit]
+Description=Notifications bot service (<UA>)
+After=network.target
+
+[Service]
+WorkingDirectory=/root/efi/<..>/bot/
+ExecStart=/root/efi/<..>/bot/venv/bin/python /root/efi/<..>/bot/notifications_bot.py
+User=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

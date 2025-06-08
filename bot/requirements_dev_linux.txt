@@ -1,0 +1,8 @@
+# Linux development requirements.
+pytest
+
+aiogram
+openai
+redis
+elasticsearch
+hyperscan                 # for fast reply filters. 
